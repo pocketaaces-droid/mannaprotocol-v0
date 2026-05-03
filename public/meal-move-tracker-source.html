@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The 7-Day Meal + Move Tracker — Metabolic Manna</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400,100;1,9..144,500,100;1,9..144,600,100&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FDF8F0;
+    --bg-alt:#F5EBD7;
+    --surface:#FFFFFF;
+    --surface-warm:#FAF2E1;
+    --ink:#3D2E1F;
+    --ink-soft:#5C4A38;
+    --muted:#8B7355;
+    --sage:#7C9A8E;
+    --sage-deep:#5A7A6E;
+    --gold:#B8860B;
+    --gold-soft:#D4A843;
+    --border:rgba(61,46,31,0.10);
+    --border-strong:rgba(61,46,31,0.24);
+    --font-heading:'Fraunces',Georgia,serif;
+    --font-body:'DM Sans',-apple-system,sans-serif;
+  }
+  @page{ size:Letter; margin:0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html,body{
+    background:var(--bg);
+    color:var(--ink-soft);
+    font-family:var(--font-body);
+    font-size:11pt;
+    line-height:1.55;
+    letter-spacing:-0.01em;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .page{
+    width:8.5in; height:11in;
+    padding:0.85in 1.15in 0.85in 0.85in;
+    page-break-after:always; break-after:page;
+    position:relative;
+    background:var(--bg);
+    display:flex; flex-direction:column;
+    overflow:hidden;
+  }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+  .page.alt{ background:var(--bg-alt); }
+  .page.mirror{ padding:0.85in 0.85in 0.85in 1.15in; }
+
+  /* --- bars --- */
+  .brandbar{
+    display:flex; align-items:baseline; justify-content:space-between;
+    font-family:var(--font-heading);
+    font-size:9pt; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:600;
+    padding-bottom:10pt;
+    margin-bottom:36pt;
+  }
+  .brandbar .mark em{
+    color:var(--gold); font-style:italic; font-weight:500;
+    letter-spacing:0.01em; text-transform:none; font-size:11pt;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .footbar{
+    margin-top:auto;
+    padding-top:14pt;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-size:8pt; color:var(--muted);
+    letter-spacing:0.14em; text-transform:uppercase;
+  }
+
+  /* --- headings --- */
+  h1, h2, h3, h4{
+    font-family:var(--font-heading);
+    color:var(--ink);
+    font-weight:600;
+    letter-spacing:-0.022em;
+    line-height:1.07;
+    font-variation-settings:"opsz" 144;
+  }
+  h1{ font-size:88pt; line-height:0.96; letter-spacing:-0.032em; }
+  h2{ font-size:36pt; line-height:1.05; }
+  h3{ font-size:16pt; line-height:1.2; }
+  h4{ font-size:11pt; line-height:1.3; }
+
+  h1 em, h2 em, h3 em{
+    font-style:italic;
+    color:var(--gold);
+    font-weight:500;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  p{ margin-bottom:11pt; max-width:62ch; }
+  p:last-child{ margin-bottom:0; }
+  strong{ color:var(--ink); font-weight:600; }
+
+  .overline{
+    font-family:var(--font-heading);
+    font-size:9pt;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--sage-deep);
+    font-weight:600;
+    margin-bottom:18pt;
+  }
+
+  .lead{
+    font-family:var(--font-heading);
+    font-style:italic;
+    font-size:15pt;
+    line-height:1.45;
+    color:var(--ink-soft);
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+    max-width:30ch;
+  }
+
+  /* ============ COVER ============ */
+  .cover{
+    padding:0;
+    background:var(--bg);
+    display:block;
+    position:relative;
+    overflow:hidden;
+  }
+  .cover-photo{
+    position:absolute;
+    top:0; left:0; right:0;
+    height:6.2in;
+    background-image:url('meal-move-tracker-cover.png');
+    background-size:cover;
+    background-position:center 55%;
+  }
+  .cover-photo::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0;
+    height:1.8in;
+    background:linear-gradient(to bottom, rgba(253,248,240,0) 0%, rgba(253,248,240,1) 100%);
+  }
+  .cover-mark{
+    position:absolute;
+    top:0.7in; left:0.85in; right:0.85in;
+    z-index:2;
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:var(--font-heading);
+    font-size:10pt; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--ink); font-weight:600;
+  }
+  .cover-mark em{
+    color:var(--gold); font-style:italic; text-transform:none;
+    letter-spacing:0.01em; font-size:12pt; font-weight:500;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .cover-body{
+    position:absolute;
+    left:0.85in; right:1.15in;
+    bottom:0.75in;
+    z-index:2;
+  }
+  .cover-body .kicker{
+    font-family:var(--font-heading);
+    font-size:10pt; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:600;
+    margin-bottom:20pt;
+  }
+  .cover-body h1{
+    font-size:78pt; line-height:0.94; color:var(--ink);
+    letter-spacing:-0.035em;
+  }
+  .cover-body h1 em{
+    display:block;
+  }
+  .cover-rule{
+    width:48pt; height:2pt; background:var(--gold);
+    margin:26pt 0 18pt;
+  }
+  .cover-sub{
+    font-family:var(--font-heading);
+    font-style:italic;
+    font-size:13pt;
+    color:var(--ink-soft);
+    max-width:4.5in;
+    line-height:1.45;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .cover-meta{
+    position:absolute;
+    bottom:0.5in; right:0.85in;
+    font-size:8pt; letter-spacing:0.22em;
+    text-transform:uppercase; color:var(--muted);
+    font-weight:500;
+    z-index:2;
+  }
+
+  /* ============ INTRO / WHY (two-col asymmetric) ============ */
+  .intro-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48pt;
+    align-items:start;
+  }
+  .intro-grid .left h2{
+    max-width:4.5in;
+  }
+  .intro-grid .right{ padding-top:14pt; }
+  .intro-grid .right p{ font-size:10.5pt; line-height:1.6; color:var(--ink-soft); }
+  .intro-grid .right p:first-child::first-letter{
+    font-family:var(--font-heading);
+    font-size:46pt;
+    float:left;
+    line-height:0.88;
+    padding:4pt 8pt 0 0;
+    color:var(--gold);
+    font-weight:600;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+    font-style:italic;
+  }
+
+  .move-grid{
+    margin-top:30pt;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:36pt;
+    padding-top:24pt;
+    border-top:1px solid var(--border);
+  }
+  .move-card .tag{
+    font-family:var(--font-heading);
+    font-size:8pt; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; margin-bottom:8pt;
+  }
+  .move-card h4{
+    font-size:14pt; margin-bottom:8pt; color:var(--ink); line-height:1.2;
+    letter-spacing:-0.015em;
+  }
+  .move-card h4 em{ color:var(--gold); font-style:italic; font-variation-settings:"opsz" 144, "SOFT" 100; }
+  .move-card p{ font-size:9.5pt; line-height:1.55; color:var(--ink-soft); margin:0; }
+  .move-card .src{
+    margin-top:8pt;
+    font-family:var(--font-heading);
+    font-size:8pt; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:600;
+  }
+
+  .honest-callout{
+    margin-top:22pt;
+    padding-top:16pt;
+    border-top:1px solid var(--border);
+    max-width:5.6in;
+  }
+  .honest-callout .label{
+    font-family:var(--font-heading);
+    font-size:9pt; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--ink); font-weight:600; margin-bottom:8pt;
+  }
+  .honest-callout p{
+    font-size:10pt; line-height:1.55; color:var(--ink-soft);
+    font-style:italic;
+    font-family:var(--font-heading);
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+    max-width:5.6in;
+  }
+
+  /* ============ HOW TO USE — instructions list ============ */
+  .howto-list{
+    margin-top:18pt;
+    max-width:5.6in;
+  }
+  .howto-item{
+    display:grid;
+    grid-template-columns:34pt 1fr;
+    gap:14pt;
+    padding:14pt 0;
+    border-bottom:1px solid var(--border);
+  }
+  .howto-item:last-child{ border-bottom:none; }
+  .howto-item .n{
+    font-family:var(--font-heading);
+    font-style:italic;
+    font-size:22pt;
+    color:var(--gold);
+    font-weight:500;
+    line-height:1;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .howto-item .t h4{ color:var(--ink); margin-bottom:4pt; font-size:12pt; }
+  .howto-item .t p{ font-size:10pt; margin:0; max-width:none; color:var(--ink-soft); }
+
+  /* ============ DAY PAGES — verse + log + reflection ============ */
+  .day-numeral{
+    position:absolute;
+    font-family:var(--font-heading);
+    font-style:italic;
+    color:var(--gold);
+    font-weight:500;
+    font-size:240pt;
+    line-height:0.8;
+    letter-spacing:-0.05em;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+    opacity:0.10;
+    z-index:0;
+    pointer-events:none;
+    user-select:none;
+  }
+  .day-numeral.left{ left:0.40in; bottom:0.55in; }
+  .day-numeral.right{ right:0.40in; bottom:0.55in; }
+
+  .day-content{
+    position:relative;
+    z-index:1;
+  }
+
+  .day-kicker{
+    font-family:var(--font-heading);
+    font-size:9pt; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:600;
+    margin-bottom:14pt;
+  }
+  .day-kicker em{
+    color:var(--gold); font-style:italic; text-transform:none;
+    letter-spacing:0.02em; font-size:11pt; font-weight:500;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+
+  .verse{
+    max-width:5.4in;
+    margin-bottom:14pt;
+  }
+  .verse blockquote{
+    font-family:var(--font-heading);
+    font-size:13.5pt;
+    line-height:1.5;
+    color:var(--ink);
+    font-style:italic;
+    font-weight:400;
+    letter-spacing:-0.012em;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+    max-width:5.4in;
+  }
+  .verse cite{
+    display:block;
+    font-style:normal;
+    font-family:var(--font-heading);
+    font-size:8pt;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--sage-deep);
+    margin-top:10pt;
+    font-weight:600;
+  }
+
+  .log-section{
+    margin-top:30pt;
+  }
+  .log-section .overline{
+    margin-bottom:14pt;
+  }
+  .log-row{
+    display:grid;
+    grid-template-columns:0.36in 3.6in 1.05in 0.95in;
+    gap:8pt;
+    align-items:end;
+    padding:14pt 0;
+    border-bottom:1px solid var(--border);
+  }
+  .log-row:last-child{ border-bottom:none; }
+  .log-row .slot{
+    font-family:var(--font-heading);
+    font-style:italic;
+    font-size:14pt;
+    color:var(--gold);
+    font-weight:500;
+    line-height:1;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .log-row .write{
+    border-bottom:1px solid var(--border-strong);
+    height:24pt;
+  }
+  .log-row .check{
+    display:flex;
+    align-items:center;
+    gap:6pt;
+    font-family:var(--font-body);
+    font-size:8.5pt;
+    letter-spacing:0.05em;
+    color:var(--ink);
+    font-weight:500;
+    text-transform:uppercase;
+  }
+  .log-row .check .box{
+    display:inline-block;
+    width:11pt; height:11pt;
+    border:1.2px solid var(--border-strong);
+    border-radius:2pt;
+  }
+
+  .reflect-section{
+    margin-top:26pt;
+    padding-top:18pt;
+    border-top:1px solid var(--border);
+    max-width:5.6in;
+  }
+  .reflect-section .overline{
+    margin-bottom:12pt;
+  }
+  .reflect-section .reflect-line{
+    border-bottom:1px solid var(--border-strong);
+    height:24pt;
+    max-width:5.6in;
+  }
+
+  /* ============ CLOSING PAGE ============ */
+  .closing-wrap{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    max-width:5.4in;
+    padding-top:8pt;
+  }
+  .closing-wrap .overline{ margin-bottom:18pt; }
+  .closing-wrap h2{
+    font-size:38pt;
+    line-height:1.06;
+    max-width:none;
+    margin-bottom:22pt;
+  }
+  .closing-wrap p{
+    margin-top:0;
+    margin-bottom:14pt;
+    font-size:11pt;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:4.8in;
+  }
+  .next-step{
+    margin-top:24pt;
+    padding:20pt 24pt;
+    background:var(--surface-warm);
+    border-left:2pt solid var(--gold);
+    max-width:5in;
+  }
+  .next-step .label{
+    font-family:var(--font-heading);
+    font-size:9pt; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--sage-deep); font-weight:600; margin-bottom:8pt;
+  }
+  .next-step h4{
+    font-size:14pt; color:var(--ink); margin-bottom:10pt; line-height:1.3;
+  }
+  .next-step h4 em{ color:var(--gold); font-style:italic; font-variation-settings:"opsz" 144, "SOFT" 100; }
+  .next-step p{ font-size:10pt; line-height:1.55; margin:0; max-width:none; }
+  .next-step a{ color:var(--gold); text-decoration:none; font-weight:600; }
+
+  .invitation{
+    margin-top:24pt;
+    font-family:var(--font-heading);
+    font-style:italic;
+    font-size:11.5pt;
+    color:var(--ink-soft);
+    max-width:4.6in;
+    line-height:1.5;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .invitation a{ color:var(--gold); text-decoration:none; }
+
+  .disclaimer{
+    margin-top:auto;
+    padding-top:18pt;
+    border-top:1px solid var(--border);
+    font-family:var(--font-body);
+    font-size:8pt;
+    line-height:1.5;
+    color:var(--muted);
+    max-width:5.4in;
+  }
+  .disclaimer p{ margin:0 0 4pt; max-width:none; font-size:8pt; }
+  .colophon{
+    margin-top:14pt;
+    font-size:7.5pt;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:500;
+    font-style:italic;
+    font-family:var(--font-heading);
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 : COVER ============ -->
+<section class="page cover">
+  <div class="cover-photo"></div>
+  <div class="cover-mark">
+    <span>Metabolic <em>Manna</em></span>
+    <span>Edition 2026</span>
+  </div>
+  <div class="cover-body">
+    <div class="kicker">A free 7-day printable companion</div>
+    <h1>The 7-Day<br>Meal + Move<br><em>Tracker</em></h1>
+    <div class="cover-rule"></div>
+    <p class="cover-sub">Two science-backed moves — food order and a short post-meal walk — tracked one day at a time. Grounded in peer-reviewed research. Built for the body you've already been given.</p>
+  </div>
+  <div class="cover-meta">metabolicmanna.com</div>
+</section>
+
+<!-- ============ PAGE 2 : WHY IT WORKS ============ -->
+<section class="page alt">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Why this works</span></div>
+
+  <div class="intro-grid">
+    <div class="left">
+      <div class="overline">Two moves, one week</div>
+      <h2>Same food.<br><em>Smaller</em> spike.</h2>
+    </div>
+    <div class="right">
+      <p>Most metabolic advice asks you to overhaul what you eat. The two moves in this tracker ask something simpler — change the <em>order</em> you eat in, and add a <em>short walk</em> after the meal. Same food. Same calories. Different result in published trials.</p>
+      <p>Neither move requires a continuous glucose monitor, a supplement, or a religion. They are two of the cleanest, lowest-friction findings in the post-meal glucose literature, and they are what this tracker is built around.</p>
+    </div>
+  </div>
+
+  <div class="move-grid">
+    <div class="move-card">
+      <div class="tag">Move 01 · Sequencing</div>
+      <h4>Vegetables and protein <em>before</em> carbs.</h4>
+      <p>In a 2019 trial of adults with prediabetes (Shukla et al.), eating vegetables and protein first and saving carbohydrates for last reduced the incremental glucose peak by up to 54%. A 2015 study in adults with type 2 diabetes showed approximately a 29% reduction at 30 minutes.</p>
+      <div class="src">Shukla 2015 · Shukla 2019</div>
+    </div>
+    <div class="move-card">
+      <div class="tag">Move 02 · Walking</div>
+      <h4>A 10-minute walk <em>within fifteen minutes</em>.</h4>
+      <p>In a 2016 trial of 41 adults with type 2 diabetes (Reynolds et al.), three 10-minute post-meal walks lowered post-meal glucose by ~12% overall and ~22% after dinner. A 2023 meta-analysis (Engeroff et al.) found post-meal exercise is significantly more effective than pre-meal exercise.</p>
+      <div class="src">Reynolds 2016 · Engeroff 2023</div>
+    </div>
+  </div>
+
+  <div class="honest-callout">
+    <div class="label">Honest expectations</div>
+    <p>The largest effects in these studies were observed in adults with type 2 diabetes or prediabetes. Healthy adults transiently spike above 140 mg/dL after typical meals — that's normal physiology (Shah 2019). Individual responses vary. If you have diabetes, are on glucose-affecting medication, or have any condition involving blood sugar, talk to your healthcare provider before changing how you eat or exercise.</p>
+  </div>
+
+  <div class="footbar"><span>metabolicmanna.com</span><span>02</span></div>
+</section>
+
+<!-- ============ PAGE 3 : HOW TO USE THIS ============ -->
+<section class="page">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>How to use this</span></div>
+
+  <div class="overline">A short manual</div>
+  <h2>Five things, then <em>start</em>.</h2>
+
+  <div class="howto-list">
+    <div class="howto-item">
+      <div class="n">i</div>
+      <div class="t">
+        <h4>Each day has three meal slots.</h4>
+        <p>Use them however your day actually runs — three meals, two meals plus a snack, or one big meal. Empty slots are fine.</p>
+      </div>
+    </div>
+    <div class="howto-item">
+      <div class="n">ii</div>
+      <div class="t">
+        <h4>Mark "sequenced ✓" if vegetables or protein came first.</h4>
+        <p>Salad before pasta. Eggs before toast. Soup before sandwich. The first few bites being non-carb is what counts.</p>
+      </div>
+    </div>
+    <div class="howto-item">
+      <div class="n">iii</div>
+      <div class="t">
+        <h4>Mark "walked ✓" if you walked 10+ minutes after.</h4>
+        <p>Within about 15 minutes of finishing the meal is the window the literature supports most directly. A loop around the block counts.</p>
+      </div>
+    </div>
+    <div class="howto-item">
+      <div class="n">iv</div>
+      <div class="t">
+        <h4>Write one win at the end of the day.</h4>
+        <p>Not a graded report. Just a sentence — what worked, what surprised you, or what you noticed. The reflection matters more than the checks.</p>
+      </div>
+    </div>
+    <div class="howto-item">
+      <div class="n">v</div>
+      <div class="t">
+        <h4>Track the pattern. Don't chase the number.</h4>
+        <p>This is not a glucose monitor and the verses on each page are not a sermon. The body is a gift to steward, not a project to optimize.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footbar"><span>metabolicmanna.com</span><span>03</span></div>
+</section>
+
+<!-- ============ PAGE 4 : DAY 01 — TEMPLE ============ -->
+<section class="page">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Day 01 / 07</span></div>
+  <div class="day-numeral left">01</div>
+  <div class="day-content">
+    <div class="day-kicker">Day one &nbsp;·&nbsp; <em>The temple</em></div>
+    <div class="verse">
+      <blockquote>Do you not know that your body is a temple of the Holy Spirit, who is in you, whom you have received from God? You are not your own; you were bought at a price. Therefore glorify God with your body.</blockquote>
+      <cite>1 Corinthians 6:19–20 &nbsp;·&nbsp; Berean Standard Bible</cite>
+    </div>
+
+    <div class="log-section">
+      <div class="overline">Today's meals</div>
+      <div class="log-row">
+        <div class="slot">M1</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+      <div class="log-row">
+        <div class="slot">M2</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+      <div class="log-row">
+        <div class="slot">M3</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+    </div>
+
+    <div class="reflect-section">
+      <div class="overline">Today's win</div>
+      <div class="reflect-line"></div>
+    </div>
+  </div>
+  <div class="footbar"><span>metabolicmanna.com</span><span>04</span></div>
+</section>
+
+<!-- ============ PAGE 5 : DAY 02 — WONDER (mirror) ============ -->
+<section class="page alt mirror">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Day 02 / 07</span></div>
+  <div class="day-numeral right">02</div>
+  <div class="day-content">
+    <div class="day-kicker">Day two &nbsp;·&nbsp; <em>Wonder</em></div>
+    <div class="verse">
+      <blockquote>I praise You, for I am fearfully and wonderfully made. Marvelous are Your works, and I know this very well.</blockquote>
+      <cite>Psalm 139:14 &nbsp;·&nbsp; Berean Standard Bible</cite>
+    </div>
+
+    <div class="log-section">
+      <div class="overline">Today's meals</div>
+      <div class="log-row">
+        <div class="slot">M1</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+      <div class="log-row">
+        <div class="slot">M2</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+      <div class="log-row">
+        <div class="slot">M3</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+    </div>
+
+    <div class="reflect-section">
+      <div class="overline">Today's win</div>
+      <div class="reflect-line"></div>
+    </div>
+  </div>
+  <div class="footbar"><span>metabolicmanna.com</span><span>05</span></div>
+</section>
+
+<!-- ============ PAGE 6 : DAY 03 — PLANTS ============ -->
+<section class="page">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Day 03 / 07</span></div>
+  <div class="day-numeral left">03</div>
+  <div class="day-content">
+    <div class="day-kicker">Day three &nbsp;·&nbsp; <em>Plants</em></div>
+    <div class="verse">
+      <blockquote>Then God said, "Behold, I have given you every seed-bearing plant on the face of all the earth, and every tree whose fruit contains seed. They will be yours for food."</blockquote>
+      <cite>Genesis 1:29 &nbsp;·&nbsp; Berean Standard Bible</cite>
+    </div>
+
+    <div class="log-section">
+      <div class="overline">Today's meals</div>
+      <div class="log-row">
+        <div class="slot">M1</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+      <div class="log-row">
+        <div class="slot">M2</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+      <div class="log-row">
+        <div class="slot">M3</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+    </div>
+
+    <div class="reflect-section">
+      <div class="overline">Today's win</div>
+      <div class="reflect-line"></div>
+    </div>
+  </div>
+  <div class="footbar"><span>metabolicmanna.com</span><span>06</span></div>
+</section>
+
+<!-- ============ PAGE 7 : DAY 04 — DANIEL (mirror) ============ -->
+<section class="page alt mirror">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Day 04 / 07</span></div>
+  <div class="day-numeral right">04</div>
+  <div class="day-content">
+    <div class="day-kicker">Day four &nbsp;·&nbsp; <em>Daniel's test</em></div>
+    <div class="verse">
+      <blockquote>Please test your servants for ten days. Let us be given only vegetables to eat and water to drink.</blockquote>
+      <cite>Daniel 1:12 &nbsp;·&nbsp; Berean Standard Bible</cite>
+    </div>
+
+    <div class="log-section">
+      <div class="overline">Today's meals</div>
+      <div class="log-row">
+        <div class="slot">M1</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+      <div class="log-row">
+        <div class="slot">M2</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+      <div class="log-row">
+        <div class="slot">M3</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+    </div>
+
+    <div class="reflect-section">
+      <div class="overline">Today's win</div>
+      <div class="reflect-line"></div>
+    </div>
+  </div>
+  <div class="footbar"><span>metabolicmanna.com</span><span>07</span></div>
+</section>
+
+<!-- ============ PAGE 8 : DAY 05 — DISCIPLINE ============ -->
+<section class="page">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Day 05 / 07</span></div>
+  <div class="day-numeral left">05</div>
+  <div class="day-content">
+    <div class="day-kicker">Day five &nbsp;·&nbsp; <em>Discipline</em></div>
+    <div class="verse">
+      <blockquote>Now everyone who competes in the games trains with strict discipline. They do it for a crown that is perishable, but we do it for a crown that is imperishable.</blockquote>
+      <cite>1 Corinthians 9:25 &nbsp;·&nbsp; Berean Standard Bible</cite>
+    </div>
+
+    <div class="log-section">
+      <div class="overline">Today's meals</div>
+      <div class="log-row">
+        <div class="slot">M1</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+      <div class="log-row">
+        <div class="slot">M2</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+      <div class="log-row">
+        <div class="slot">M3</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+    </div>
+
+    <div class="reflect-section">
+      <div class="overline">Today's win</div>
+      <div class="reflect-line"></div>
+    </div>
+  </div>
+  <div class="footbar"><span>metabolicmanna.com</span><span>08</span></div>
+</section>
+
+<!-- ============ PAGE 9 : DAY 06 — JOY (mirror) ============ -->
+<section class="page alt mirror">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Day 06 / 07</span></div>
+  <div class="day-numeral right">06</div>
+  <div class="day-content">
+    <div class="day-kicker">Day six &nbsp;·&nbsp; <em>Joy</em></div>
+    <div class="verse">
+      <blockquote>Go, eat your bread with joy, and drink your wine with a cheerful heart, for God has already approved your works.</blockquote>
+      <cite>Ecclesiastes 9:7 &nbsp;·&nbsp; Berean Standard Bible</cite>
+    </div>
+
+    <div class="log-section">
+      <div class="overline">Today's meals</div>
+      <div class="log-row">
+        <div class="slot">M1</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+      <div class="log-row">
+        <div class="slot">M2</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+      <div class="log-row">
+        <div class="slot">M3</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+    </div>
+
+    <div class="reflect-section">
+      <div class="overline">Today's win</div>
+      <div class="reflect-line"></div>
+    </div>
+  </div>
+  <div class="footbar"><span>metabolicmanna.com</span><span>09</span></div>
+</section>
+
+<!-- ============ PAGE 10 : DAY 07 — OFFERING ============ -->
+<section class="page">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>Day 07 / 07</span></div>
+  <div class="day-numeral left">07</div>
+  <div class="day-content">
+    <div class="day-kicker">Day seven &nbsp;·&nbsp; <em>The offering</em></div>
+    <div class="verse">
+      <blockquote>Therefore I urge you, brothers, on account of God's mercy, to offer your bodies as living sacrifices, holy and pleasing to God, which is your spiritual service of worship.</blockquote>
+      <cite>Romans 12:1 &nbsp;·&nbsp; Berean Standard Bible</cite>
+    </div>
+
+    <div class="log-section">
+      <div class="overline">Today's meals</div>
+      <div class="log-row">
+        <div class="slot">M1</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+      <div class="log-row">
+        <div class="slot">M2</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+      <div class="log-row">
+        <div class="slot">M3</div>
+        <div class="write"></div>
+        <div class="check"><span class="box"></span>Sequenced</div>
+        <div class="check"><span class="box"></span>Walked</div>
+      </div>
+    </div>
+
+    <div class="reflect-section">
+      <div class="overline">The week, in one line</div>
+      <div class="reflect-line"></div>
+    </div>
+  </div>
+  <div class="footbar"><span>metabolicmanna.com</span><span>10</span></div>
+</section>
+
+<!-- ============ PAGE 11 : CLOSING ============ -->
+<section class="page alt">
+  <div class="brandbar"><span class="mark">Metabolic <em>Manna</em></span><span>What now</span></div>
+
+  <div class="closing-wrap">
+    <div class="overline">You finished</div>
+    <h2>The body is <em>adaptable</em>.<br>The pattern is <em>yours</em> now.</h2>
+    <p>Seven days of food order and post-meal walking. The research says small things, done the same way many times, change the curve more than big things done once. You just proved it on yourself.</p>
+    <p>Metabolic Manna is built by a Christian creator on the belief that the body is a gift worth stewarding, and the evidence for what works is clearer than the wellness industry wants you to think. Thank you for trusting us with your week.</p>
+
+    <div class="next-step">
+      <div class="label">Next step — optional</div>
+      <h4>Try the Meal + Move <em>Coach</em>.</h4>
+      <p>Free educational tool. Tell it about a meal, see what published research says about food order and post-meal walking. No predictions, no medical advice. <a href="https://protocol.metabolicmanna.com">protocol.metabolicmanna.com</a></p>
+    </div>
+
+    <p class="invitation">If something here helped — or didn't — I'd love to hear it. <a href="mailto:brian@metabolicmanna.com">brian@metabolicmanna.com</a></p>
+  </div>
+
+  <div class="disclaimer">
+    <p>This is for educational purposes only and is not medical advice. Consult your physician.</p>
+    <p>Directed by hand. Built with AI.</p>
+  </div>
+  <div class="colophon">Cover image generated with AI · metabolicmanna.com · Edition 2026</div>
+</section>
+
+</body>
+</html>

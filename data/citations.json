@@ -1,0 +1,279 @@
+{
+  "_meta": {
+    "source": "Metabolic Science Lit Review Notebook (ID 74700ab7-00c4-4ff3-81c2-a...)",
+    "generated": "2026-04-15",
+    "generator": "Claude Code autonomous prep session — queried NotebookLM Lit Review",
+    "confidence_grades": {
+      "strong": "Multiple RCTs and/or meta-analyses",
+      "suggestive": "Single RCT or strong observational/longitudinal",
+      "speculative": "Mechanistic or animal-model only"
+    },
+    "todo": "PubMed URLs are incomplete — Brian should run each study through pubmed.ncbi.nlm.nih.gov/ and paste the PMID link. Confirmed URLs are marked verified:true; unverified URLs are placeholders."
+  },
+  "claims": [
+    {
+      "id": "food_seq_shukla_t2d_29pct",
+      "category": "food_sequencing",
+      "claim": "Eating protein and vegetables before carbohydrates reduces postprandial glucose by approximately 29% at 30 minutes in patients with Type 2 diabetes.",
+      "confidence": "suggestive",
+      "study": "Shukla et al., 2015",
+      "journal": "Diabetes Care",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/26106234/",
+      "verified": true,
+      "use_when": "any output recommending food sequencing; flagship claim for the Food Sequencing Card"
+    },
+    {
+      "id": "food_seq_shukla_prediabetic_54pct",
+      "category": "food_sequencing",
+      "claim": "A carbohydrate-last food order produced up to a 54% reduction in the incremental glucose peak in adults with prediabetes.",
+      "confidence": "suggestive",
+      "study": "Shukla et al., 2019",
+      "journal": "Diabetes Care",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/30101510/",
+      "verified": true,
+      "use_when": "Food Sequencing Card callout + thumbnail claim for YouTube Short #02"
+    },
+    {
+      "id": "food_seq_imai_longitudinal",
+      "category": "food_sequencing",
+      "claim": "Food sequencing (vegetables before carbohydrates) sustained reductions in HbA1c in patients with type 2 diabetes over 2.5 years of follow-up.",
+      "confidence": "suggestive",
+      "study": "Imai et al., 2014",
+      "journal": "Journal of Clinical Biochemistry and Nutrition",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/24426184/",
+      "verified": true,
+      "use_when": "durability claim — sustained effect of food sequencing over 2.5 years in T2D primary cohort"
+    },
+    {
+      "id": "glp1_semaglutide_14pct",
+      "category": "glp1_safety",
+      "claim": "Semaglutide (2.4 mg) produces 14.9% mean weight loss vs. 2.4% for placebo over 68 weeks.",
+      "confidence": "strong",
+      "study": "Wilding et al., 2021 (STEP 1)",
+      "journal": "New England Journal of Medicine",
+      "pubmed_url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2032183",
+      "verified": false,
+      "use_when": "context for GLP-1 user flow — why these meds are so prevalent"
+    },
+    {
+      "id": "glp1_lean_mass_neeland",
+      "category": "glp1_safety",
+      "claim": "Lean mass loss during GLP-1 therapy is proportional to standard weight-loss interventions, NOT a pathological muscle-wasting effect caused specifically by the drugs.",
+      "confidence": "strong",
+      "study": "Neeland et al., 2024",
+      "journal": "Diabetes, Obesity and Metabolism",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/?term=Neeland+2024+GLP-1+lean+mass",
+      "verified": false,
+      "use_when": "GLP-1 output — counters the 'GLP-1 kills your muscle' myth"
+    },
+    {
+      "id": "glp1_low_energy_risk",
+      "category": "glp1_safety",
+      "claim": "Layering strict intentional fasting on top of GLP-1 medications (which already suppress appetite) can increase risks of low energy availability without proportional benefits.",
+      "confidence": "suggestive",
+      "study": "Mozaffarian D et al., 2025 (Joint Advisory Review)",
+      "journal": "American Journal of Clinical Nutrition",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/?term=Mozaffarian+2025+GLP-1+fasting",
+      "verified": false,
+      "use_when": "GLP-1 FORK — primary citation for why GLP-1 users get the 12:12 safer window. MUST cite on every GLP-1 output."
+    },
+    {
+      "id": "glp1_discontinuation_regain",
+      "category": "glp1_safety",
+      "claim": "Patients who discontinue GLP-1 agonists regain approximately two-thirds of their prior weight loss within one year.",
+      "confidence": "strong",
+      "study": "Wilding et al., 2022 (STEP 1 extension)",
+      "journal": "Diabetes, Obesity and Metabolism",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/?term=Wilding+2022+STEP+1+extension",
+      "verified": false,
+      "use_when": "context for long-term thinking on GLP-1 users — informs 'sustainable habits' framing"
+    },
+    {
+      "id": "women_repro_health_cienfuegos",
+      "category": "womens_mode",
+      "claim": "Intermittent fasting could harm reproductive health in average-weight females if fasting causes insufficient calorie intake.",
+      "confidence": "strong",
+      "study": "Cienfuegos S et al., 2022",
+      "journal": "Review of human trials",
+      "pubmed_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9182756/",
+      "verified": true,
+      "use_when": "WOMEN'S MODE — primary citation for the hormone-safety warning. MUST cite on every female-user output."
+    },
+    {
+      "id": "women_athlete_sims",
+      "category": "womens_mode",
+      "claim": "Extreme caloric deficits (which can result from fasting) pose specific nutritional and reproductive concerns for female athletes.",
+      "confidence": "strong",
+      "study": "Sims ST et al., 2023",
+      "journal": "International Society of Sports Nutrition (Position Stand)",
+      "pubmed_url": "https://www.tandfonline.com/doi/full/10.1080/15502783.2023.2204066",
+      "verified": true,
+      "use_when": "Women's Mode — for users who mark themselves as active/athletes"
+    },
+    {
+      "id": "women_sex_diffs_lowe",
+      "category": "womens_mode",
+      "claim": "Time-restricted eating impacts weight loss and metabolic parameters differently depending on compliance and biological sex.",
+      "confidence": "suggestive",
+      "study": "Lowe DA et al., 2020",
+      "journal": "JAMA Internal Medicine",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/?term=Lowe+2020+TRE+TREAT+trial",
+      "verified": false,
+      "use_when": "Women's Mode framing — establishing that sex-differentiated defaults are science-backed"
+    },
+    {
+      "id": "circadian_sutton_6h_window",
+      "category": "circadian",
+      "claim": "Early time-restricted feeding (6-hour eating window) improves insulin sensitivity, beta-cell responsiveness, blood pressure, and oxidative stress — independent of weight loss.",
+      "confidence": "suggestive",
+      "study": "Sutton et al., 2018",
+      "journal": "Cell Metabolism",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/?term=Sutton+2018+early+time+restricted+feeding",
+      "verified": false,
+      "use_when": "experienced users opting for tight windows; NEVER recommend this for GLP-1 or female users in v0"
+    },
+    {
+      "id": "circadian_timet_10h_window",
+      "category": "circadian",
+      "claim": "A 10-hour time-restricted eating window reduces body weight, BMI, and abdominal trunk fat in adults with metabolic syndrome without significant lean mass loss.",
+      "confidence": "suggestive",
+      "study": "Manoogian, Wilkinson et al., 2024 (TIMET trial)",
+      "journal": "Annals of Internal Medicine",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/?term=TIMET+time+restricted+eating+metabolic+syndrome",
+      "verified": false,
+      "use_when": "beginner to intermediate users — 14:10 / 16:8 windows. Core citation for the default Women's Mode window."
+    },
+    {
+      "id": "circadian_panda_animal",
+      "category": "circadian",
+      "claim": "Time-restricted feeding affects approximately 40% of genes across 22 organ systems, indicating heavy ties to circadian rhythm alignment.",
+      "confidence": "speculative",
+      "study": "Panda et al., 2023",
+      "journal": "Cell Metabolism",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/?term=Panda+2023+time+restricted+feeding+genes",
+      "verified": false,
+      "use_when": "MECHANISTIC framing only — always grade 🟠 Speculative because it's an animal model. Never use as a standalone recommendation."
+    },
+    {
+      "id": "ifvcr_liu_2023_equivalent",
+      "category": "intermittent_fasting",
+      "claim": "Calorie restriction with or without time-restricted eating produced virtually identical weight loss in adults with obesity over 12 months.",
+      "confidence": "strong",
+      "study": "Liu D et al., 2022",
+      "journal": "New England Journal of Medicine",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/35443107/",
+      "verified": true,
+      "use_when": "HONESTY CALLOUT — the brand stewardship move is 'fasting isn't magic, but it works when it fits your life.' Prevents overclaiming."
+    },
+    {
+      "id": "walking_buffey_meta",
+      "category": "post_meal_walking",
+      "claim": "Light-intensity walking breaks reduce postprandial glucose by 17% and significantly lower insulin versus prolonged sitting.",
+      "confidence": "strong",
+      "study": "Buffey et al., 2022",
+      "journal": "Sports Medicine (meta-analysis of 7 crossover trials)",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/?term=Buffey+2022+walking+breaks+meta-analysis",
+      "verified": false,
+      "use_when": "post-meal walking recommendation in output — Strong grade, can be the headline"
+    },
+    {
+      "id": "walking_reynolds_t2d",
+      "category": "post_meal_walking",
+      "claim": "In adults with type 2 diabetes, three 10-minute post-meal walks reduced postprandial glucose by approximately 12% overall (and 22% after dinner) versus a single 30-minute daily walk.",
+      "confidence": "suggestive",
+      "study": "Reynolds et al., 2016",
+      "journal": "Diabetologia",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/27747394/",
+      "verified": true,
+      "use_when": "specific 'walk after dinner' recommendation — strongest evening-walk evidence"
+    },
+    {
+      "id": "walking_engeroff_post_vs_pre",
+      "category": "post_meal_walking",
+      "claim": "Across a 2023 meta-analysis, post-meal exercise significantly reduced glucose excursions (SMD = 0.55) while pre-meal exercise did not reach significance; benefit attenuates if exercise is delayed past ~29 minutes.",
+      "confidence": "strong",
+      "study": "Engeroff et al., 2023",
+      "journal": "Sports Medicine (meta-analysis)",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36715875/",
+      "verified": true,
+      "use_when": "timing specificity — proves 'walk AFTER meals' over 'walk whenever'"
+    },
+    {
+      "id": "walking_pahra_hba1c",
+      "category": "post_meal_walking",
+      "claim": "Three 15-minute post-meal brisk walks improved HbA1c from 7.9% to 7.0% over 60 days in T2D patients.",
+      "confidence": "suggestive",
+      "study": "Pahra et al., 2017",
+      "journal": "Diabetology & Metabolic Syndrome",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/?term=Pahra+2017+post+meal+walking+HbA1c",
+      "verified": false,
+      "use_when": "longer-term outcome claim — gives users a concrete target"
+    },
+    {
+      "id": "walking_solomon_immediate",
+      "category": "post_meal_walking",
+      "claim": "Walking immediately after a meal improves glucose metrics significantly; walking 30 minutes after shows no significant effect.",
+      "confidence": "suggestive",
+      "study": "Solomon et al., 2020",
+      "journal": "Pflügers Archiv",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/?term=Solomon+2020+post+meal+walking+timing",
+      "verified": false,
+      "use_when": "timing precision — 'walk right after eating, not later'"
+    },
+    {
+      "id": "walking_dempsey_breaks",
+      "category": "post_meal_walking",
+      "claim": "3-minute bouts of light walking every 30 minutes over 7 hours reduced glucose iAUC by ~39% and insulin by ~36% in inactive T2D patients.",
+      "confidence": "suggestive",
+      "study": "Dempsey et al., 2016",
+      "journal": "Diabetes Care",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/?term=Dempsey+2016+walking+breaks+diabetes",
+      "verified": false,
+      "use_when": "for sedentary/office worker users — micro-walk framing"
+    },
+    {
+      "id": "walking_damelio_bp",
+      "category": "post_meal_walking",
+      "claim": "Three 15-minute post-meal brisk walks reduced nighttime central systolic BP and improved nocturnal BP dipping in inactive young women.",
+      "confidence": "suggestive",
+      "study": "D'Amelio et al., 2025",
+      "journal": "Journal of Hypertension",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/?term=D%27Amelio+2025+post+meal+walking+blood+pressure",
+      "verified": false,
+      "use_when": "bonus claim for users with BP concerns — specifically female-relevant"
+    },
+    {
+      "id": "if_trepanowski_adf",
+      "category": "intermittent_fasting",
+      "claim": "Alternate-day fasting (ADF) produces weight loss equivalent to conventional daily calorie restriction, not superior, and features a higher dropout rate.",
+      "confidence": "strong",
+      "study": "Trepanowski & Varady et al., 2017",
+      "journal": "JAMA Internal Medicine",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/?term=Trepanowski+2017+alternate+day+fasting",
+      "verified": false,
+      "use_when": "DEFLECT ADF recommendation — if a user asks for ADF, the output should say 'evidence shows equivalence, not superiority; try 14:10 first'"
+    },
+    {
+      "id": "if_sun_umbrella",
+      "category": "intermittent_fasting",
+      "claim": "An umbrella review of 23 meta-analyses found intermittent fasting reliably lowers fasting insulin, HOMA-IR, waist circumference, and fat mass, with modest improvements in fat-free mass.",
+      "confidence": "strong",
+      "study": "Sun ML et al., 2024",
+      "journal": "EClinicalMedicine (umbrella review)",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38500840/",
+      "verified": true,
+      "use_when": "headline benefits claim — the strongest evidence we have that IF 'does something'"
+    },
+    {
+      "id": "autophagy_moller_modest",
+      "category": "myth_flags",
+      "claim": "36 hours of fasting had only MODEST effects on human skeletal muscle autophagy — exact timing thresholds in humans remain unknown.",
+      "confidence": "suggestive",
+      "study": "Møller et al., 2019",
+      "journal": "Journal of Applied Physiology",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/?term=Moller+2019+autophagy+human+fasting",
+      "verified": false,
+      "use_when": "MYTH DEFLECTION — if a user asks about autophagy, the output should cite THIS not the '16-hour autophagy' myth. The brand stewardship move is honesty about what's actually known."
+    }
+  ]
+}

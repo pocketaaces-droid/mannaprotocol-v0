@@ -1,0 +1,216 @@
+/* Manna Protocol v0 — Warm Organic design system inherited from metabolicmanna.com */
+
+:root {
+  --color-bg:           #FDF8F0;
+  --color-bg-alt:       #F5EBD7;
+  --color-surface:      #FFFFFF;
+  --color-surface-warm: #FAF2E1;
+  --color-ink:          #3D2E1F;
+  --color-ink-soft:     #5C4A38;
+  --color-muted:        #8B7355;
+  --color-sage:         #7C9A8E;
+  --color-sage-deep:    #5A7A6E;
+  --color-gold:         #B8860B;
+  --color-gold-soft:    #D4A843;
+  --color-gold-hover:   #9E6F0A;
+  --color-border:       rgba(61, 46, 31, 0.12);
+  --color-border-strong: rgba(61, 46, 31, 0.24);
+
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body:    'DM Sans', -apple-system, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.04;
+  color: var(--color-ink);
+  margin: 0 0 1rem;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+h1 { font-size: clamp(2.25rem, 5vw + 1rem, 4rem); }
+h2 { font-size: clamp(1.75rem, 3vw + 1rem, 2.75rem); line-height: 1.12; }
+h3 { font-size: clamp(1.25rem, 1vw + 1rem, 1.6rem); line-height: 1.2; letter-spacing: -0.015em; }
+
+em {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  color: var(--color-gold);
+  font-weight: 400;
+}
+
+p { margin: 0 0 1rem; color: var(--color-ink-soft); max-width: 62ch; }
+a { color: var(--color-gold); text-decoration: none; }
+a:hover { color: var(--color-gold-hover); text-decoration: underline; }
+
+button { font: inherit; cursor: pointer; }
+
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2rem); }
+.narrow { max-width: 640px; margin: 0 auto; }
+
+.overline {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-sage-deep);
+  margin-bottom: 0.75rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.95rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 0;
+  transition: transform 180ms ease, background 180ms ease;
+}
+.btn-primary {
+  background: var(--color-gold);
+  color: white;
+  box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+}
+.btn-primary:hover {
+  background: var(--color-gold-hover);
+  transform: translateY(-2px);
+}
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+.form-group { margin-bottom: 1.5rem; }
+label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--color-ink); }
+input[type="number"], input[type="text"], select, textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 12px;
+  background: var(--color-surface);
+  font: inherit;
+  color: var(--color-ink);
+}
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 1px;
+  border-color: var(--color-gold);
+}
+
+.radio-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+.radio-row label {
+  flex: 1;
+  min-width: 130px;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+.radio-row label:has(input:checked) {
+  background: var(--color-bg-alt);
+  border-color: var(--color-gold);
+}
+.radio-row input[type="radio"], .radio-row input[type="checkbox"] {
+  margin: 0;
+}
+
+.evidence-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  transition: transform 180ms ease;
+}
+.evidence-badge:hover { transform: scale(1.05); }
+.evidence-badge.strong { background: rgba(16, 185, 129, 0.12); color: #047857; }
+.evidence-badge.suggestive { background: rgba(184, 134, 11, 0.12); color: var(--color-gold-hover); }
+.evidence-badge.speculative { background: rgba(249, 115, 22, 0.12); color: #C2410C; }
+
+.safety-notice {
+  background: rgba(184, 134, 11, 0.08);
+  border-left: 3px solid var(--color-gold);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.safety-notice h3 { color: var(--color-gold-hover); font-size: 1.1rem; margin-bottom: 0.5rem; }
+.safety-notice p { margin-bottom: 0.5rem; }
+
+.day-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+.day-card .day-num {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-gold);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+}
+.day-card h4 { margin: 0.25rem 0 0.75rem; font-size: 1.25rem; }
+
+.food-card {
+  background: var(--color-surface-warm);
+  border: 2px solid var(--color-gold);
+  border-radius: 14px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+.food-card .order {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.food-card .order-step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-surface);
+  border-radius: 10px;
+}
+.food-card .order-step .step-num {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-gold);
+  font-size: 1.5rem;
+  font-weight: 700;
+  min-width: 1.75rem;
+}
+
+@media print {
+  body { background: white; }
+  .no-print { display: none !important; }
+  .food-card { page-break-inside: avoid; box-shadow: none; }
+}
