@@ -77,6 +77,17 @@ describe("DayProtocolSchema", () => {
     };
     expect(DayProtocolSchema.safeParse(withScripture).success).toBe(true);
   });
+  it("accepts a station whose walk is null (Haiku emits null, not absent)", () => {
+    const withNullWalk = {
+      ...validProtocol,
+      stations: [
+        { ...validProtocol.stations[0], walk: null },
+        validProtocol.stations[1],
+        validProtocol.stations[2],
+      ],
+    };
+    expect(DayProtocolSchema.safeParse(withNullWalk).success).toBe(true);
+  });
   it("rejects an invalid office value", () => {
     const bad = { ...validProtocol, stations: [{ ...validProtocol.stations[0], office: "noon" }, validProtocol.stations[1], validProtocol.stations[2]] };
     expect(DayProtocolSchema.safeParse(bad).success).toBe(false);

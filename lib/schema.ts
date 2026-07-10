@@ -23,7 +23,10 @@ export const StationSchema = z.object({
   meal_echo: z.string().min(3),
   sequence_fix: z.string().min(10),
   why_it_works: z.string().min(10),
-  walk: WalkSchema.optional(),
+  // Haiku emits `"walk": null` for meals with no walk rather than omitting
+  // the key, so accept null as well as absent (Station renderer treats both
+  // as "no walk").
+  walk: WalkSchema.nullish(),
   evidence: z.array(EvidenceSchema).min(1),
   confidence: ConfidenceSchema,
 });
