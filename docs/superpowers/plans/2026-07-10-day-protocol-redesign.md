@@ -1684,15 +1684,15 @@ git commit -m "feat: restyle legal + route-state pages to new system"
 - Modify: `app/layout.tsx` (OG image)
 - Create: `public/protocol-og.jpg`
 
-**GATE (per spec §6 and image-approval-gate memory):** Generate the hero with the **higgsfield-automation** skill using **Nano Banana Pro** (no text in image). **Show Brian the prompt before queueing, and Brian approves the still before it ships.** Do NOT auto-approve.
+**GATE (per spec §6, updated 2026-07-10):** Generate the hero with the **higgsfield-automation** skill using **Nano Banana Pro** (no text in image). Prompt approval is NOT required — queue directly. **Brian MUST approve the rendered still before it ships** (image-approval gate still applies to the output).
 
-- [ ] **Step 1: Draft the NB Pro prompt and show Brian**
+- [ ] **Step 1: Write the NB Pro prompt and queue directly**
 
-Draft a prompt for a dusk-lit still that blends into the `.band-dusk` gradient (warm-ink → sage): e.g. a low-light wooden table at dusk with simple whole food and a lit garden walking path beyond a window; warm gold rim-light; no text, no legible signage; 16:9. Present to Brian; wait for approval or edits.
+Prompt for a dusk-lit still that blends into the `.band-dusk` gradient (warm-ink → sage): a low-light wooden table at dusk with simple whole food and a lit garden walking path beyond a window; warm gold rim-light; no text, no legible signage; 16:9. Queue it without pre-approval.
 
-- [ ] **Step 2: Generate + place**
+- [ ] **Step 2: Generate, show Brian, place after his approval**
 
-After approval, generate via higgsfield-automation (NB Pro, no upscale needed for a bg image unless requested), download the approved still to `public/protocol-hero.jpg`. Derive `public/protocol-og.jpg` (1200×630) via the poster pattern.
+Generate via higgsfield-automation (NB Pro, no upscale needed for a bg image unless requested). Present the rendered still to Brian and wait for his approval. Only after he approves, download it to `public/protocol-hero.jpg` and derive `public/protocol-og.jpg` (1200×630) via the poster pattern. If he rejects, regenerate before proceeding.
 
 - [ ] **Step 3: Wire the hero image into `components/Hero.tsx`**
 
