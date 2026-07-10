@@ -1,33 +1,30 @@
 import type { Metadata } from "next";
+import { Playfair_Display, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-playfair",
+  style: ["normal", "italic"],
+});
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-source-sans",
+  style: ["normal", "italic"],
+});
+
 export const metadata: Metadata = {
-  title: "Meal + Move Coach — Two science-backed moves | Metabolic Manna",
+  metadataBase: new URL("https://protocol.metabolicmanna.com"),
+  title: "Manna Protocol — Order your day, steady your blood sugar",
   description:
-    "Free educational tool. Tell us about your meal — see what the research says about food order and post-meal walking. Cited. No medical advice. Plus a free 7-day tracker (PDF).",
-  openGraph: {
-    title: "Meal + Move Coach — what the research says",
-    description:
-      "Free educational tool from Metabolic Manna. Food order + post-meal walking, plus a 7-day tracker.",
-    type: "website",
-    url: "https://protocol.metabolicmanna.com",
-  },
-  twitter: { card: "summary_large_image" },
+    "A free, education-only day protocol: your meals resequenced and your walks placed, cited to published research. By Metabolic Manna.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className={`${playfair.variable} ${sourceSans.variable}`}>
       <body>{children}</body>
     </html>
   );
