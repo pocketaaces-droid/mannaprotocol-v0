@@ -20,6 +20,15 @@ export const metadata: Metadata = {
   title: "Manna Protocol — Order your day, steady your blood sugar",
   description:
     "A free, education-only day protocol: your meals resequenced and your walks placed, cited to published research. By Metabolic Manna.",
+  openGraph: {
+    title: "Manna Protocol — Order your day, steady your blood sugar",
+    description:
+      "A free, education-only day protocol, cited to published research. By Metabolic Manna.",
+    url: "https://protocol.metabolicmanna.com",
+    siteName: "Manna Protocol",
+    images: [{ url: "/protocol-og.jpg", width: 1200, height: 630 }],
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

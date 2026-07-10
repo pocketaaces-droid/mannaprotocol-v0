@@ -2,7 +2,15 @@ import { SiteHeader } from "./SiteHeader";
 
 export function Hero() {
   return (
-    <section className="band-dusk">
+    <section
+      className="band-dusk"
+      style={{
+        backgroundImage:
+          "linear-gradient(165deg, rgba(36,26,16,0.86) 0%, rgba(58,44,27,0.82) 55%, rgba(78,107,94,0.6) 150%), url('/protocol-hero.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <SiteHeader onDusk />
       <div className="wrap" style={{ padding: "3rem 1.5rem 4rem" }}>
         <div className="narrow" style={{ margin: 0 }}>
