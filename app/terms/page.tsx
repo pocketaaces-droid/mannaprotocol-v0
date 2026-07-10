@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
   title: "Terms — Meal + Move Coach | Metabolic Manna",
@@ -8,8 +10,10 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <main className="wrap" style={{ paddingTop: "4rem", paddingBottom: "6rem" }}>
-      <div className="narrow">
+    <main>
+      <SiteHeader />
+      <section className="wrap" style={{ padding: "3rem 1.5rem" }}>
+        <div className="narrow" style={{ margin: 0 }}>
         <span className="overline">Metabolic Manna · Terms</span>
         <h1>Terms of use</h1>
         <p style={{ color: "var(--color-muted)", marginTop: "-0.5rem" }}>
@@ -84,7 +88,9 @@ export default function TermsPage() {
         <p style={{ marginTop: "3rem" }}>
           <Link href="/">← Back to the coach</Link>
         </p>
-      </div>
+        </div>
+      </section>
+      <SiteFooter />
     </main>
   );
 }

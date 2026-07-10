@@ -1,19 +1,15 @@
 import Link from "next/link";
+import { SiteHeader } from "@/components/SiteHeader";
 
 export default function NotFound() {
   return (
-    <main className="wrap" style={{ paddingTop: "4rem", paddingBottom: "6rem" }}>
-      <div className="narrow">
-        <span className="overline">404</span>
-        <h1>That page <em>wandered off</em>.</h1>
-        <p>
-          Whatever you were looking for isn't here. It may have moved, been
-          renamed, or never existed at this URL.
-        </p>
-        <Link href="/" className="btn btn-primary" style={{ marginTop: "2rem" }}>
-          ← Back to the Manna Protocol
-        </Link>
-      </div>
+    <main>
+      <SiteHeader />
+      <section className="wrap" style={{ padding: "4rem 1.5rem", textAlign: "center" }}>
+        <h1 style={{ fontSize: "2.5rem" }}>Not found</h1>
+        <p style={{ margin: "1rem 0 2rem" }}>That page isn&rsquo;t here.</p>
+        <Link href="/" className="btn-primary btn-gold">Back to the coach</Link>
+      </section>
     </main>
   );
 }
