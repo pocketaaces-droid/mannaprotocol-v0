@@ -8,7 +8,7 @@ export function Hero() {
         // headline) fading out right so the photo carries; extra top veil
         // keeps the header legible over the image.
         backgroundImage:
-          "linear-gradient(180deg, rgba(253,248,240,0.85) 0%, rgba(253,248,240,0) 22%), linear-gradient(100deg, rgba(253,248,240,0.92) 0%, rgba(253,248,240,0.72) 42%, rgba(253,248,240,0.25) 72%, rgba(253,248,240,0.05) 100%), url('/protocol-hero.jpg')",
+          "linear-gradient(180deg, rgba(253,248,240,0.65) 0%, rgba(253,248,240,0) 18%), linear-gradient(100deg, rgba(253,248,240,0.72) 0%, rgba(253,248,240,0.45) 42%, rgba(253,248,240,0.1) 72%, rgba(253,248,240,0) 100%), url('/protocol-hero.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         borderBottom: "1px solid var(--color-border)",
