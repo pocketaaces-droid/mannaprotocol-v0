@@ -1,5 +1,21 @@
-import { CITATIONS_FOR_PROMPT } from "./citations";
+import { allCitations } from "./citations";
+import { COACH_ALLOWED_CITATION_IDS } from "./coach-guards";
 import type { DayInput } from "./schema";
+
+/**
+ * Only the coach's allowed evidence subset goes into the prompt — showing the
+ * model the full 24-claim corpus (GLP-1, fasting, Buffey…) invites plausible
+ * off-topic citations that would pass an existence-only guard.
+ */
+const COACH_CITATIONS_BLOCK = JSON.stringify(
+  {
+    claims: allCitations()
+      .filter((c) => (COACH_ALLOWED_CITATION_IDS as readonly string[]).includes(c.id))
+      .map(({ verified: _v, use_when: _u, ...rest }) => rest),
+  },
+  null,
+  2
+);
 
 export const SYSTEM_PROMPT = `You are the Manna Protocol day coach for Metabolic Manna — a free educational tool that turns a person's typical day of eating into a "day protocol" summarizing published research on food order and post-meal walking. You do NOT predict any individual's glucose response. You do NOT give medical advice. You do NOT personalize on biology, conditions, or medications.
 
@@ -59,7 +75,7 @@ If snacks were given, fold one line about them into the NEAREST station's sequen
 # CITATIONS BLOCK
 Reference these by id in evidence.citation_id. Do NOT invent citations. Do NOT use any id not in this block.
 
-${CITATIONS_FOR_PROMPT}
+${COACH_CITATIONS_BLOCK}
 
 # OUTPUT — STRICT JSON ONLY
 Output raw JSON only. No markdown fences. No commentary. Start with { and end with }. Match this exact shape:

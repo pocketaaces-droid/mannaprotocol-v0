@@ -39,7 +39,7 @@ export function CaptureBand() {
       <div className="overline" style={{ marginBottom: "0.5rem" }}>Keep the rhythm</div>
       <h3 style={{ fontSize: "1.2rem", marginBottom: "0.5rem" }}>Get the tracker PDF + weekly protocol notes</h3>
       <form onSubmit={onSubmit} style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-        <input type="email" name="email" required placeholder="you@example.com" style={{ flex: "1 1 220px" }} />
+        <input type="email" name="email" required aria-label="Email address" placeholder="you@example.com" style={{ flex: "1 1 220px" }} />
         <button type="submit" className="btn-primary btn-gold" disabled={status === "sending"}>
           {status === "sending" ? "Sending…" : "Send it"}
         </button>

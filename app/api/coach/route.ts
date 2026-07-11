@@ -2,10 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { SYSTEM_PROMPT, buildUserMessage } from "@/lib/prompts";
 import { DayProtocolSchema, DayInputSchema } from "@/lib/schema";
-import { findUnknownCitationIds } from "@/lib/citations";
 import { checkRateLimit, pruneExpired } from "@/lib/rate-limit";
 import { scanForBannedPhrases } from "@/lib/banned-phrases";
-import { collectCitationIds } from "@/lib/coach-guards";
+import { collectCitationIds, findDisallowedCitationIds } from "@/lib/coach-guards";
 
 function stripJsonFences(text: string): string {
   const trimmed = text.trim();
@@ -81,10 +80,10 @@ export async function POST(req: NextRequest) {
 
   const out = outputResult.data;
 
-  const unknownIds = findUnknownCitationIds(collectCitationIds(out));
-  if (unknownIds.length > 0) {
-    console.error("[coach] hallucinated citation IDs:", unknownIds);
-    return NextResponse.json({ error: "Generator referenced unknown citations", unknownIds }, { status: 500 });
+  const disallowedIds = findDisallowedCitationIds(collectCitationIds(out));
+  if (disallowedIds.length > 0) {
+    console.error("[coach] disallowed citation IDs:", disallowedIds);
+    return NextResponse.json({ error: "Generator referenced disallowed citations", disallowedIds }, { status: 500 });
   }
 
   const bannedHits = scanForBannedPhrases(JSON.stringify(out));

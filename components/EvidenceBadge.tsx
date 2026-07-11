@@ -23,7 +23,7 @@ export function EvidenceBadge({ evidence }: { evidence: Evidence }) {
 export function EvidenceRow({ evidence }: { evidence: Evidence[] }) {
   return (
     <div style={{ display: "flex", flexWrap: "wrap", marginTop: "0.5rem" }}>
-      {evidence.map((e, i) => <EvidenceBadge key={i} evidence={e} />)}
+      {evidence.map((e) => <EvidenceBadge key={e.citation_id} evidence={e} />)}
     </div>
   );
 }

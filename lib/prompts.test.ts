@@ -31,6 +31,10 @@ describe("SYSTEM_PROMPT", () => {
   it("embeds the citation whitelist", () => {
     expect(SYSTEM_PROMPT).toContain("walking_reynolds_t2d");
   });
+  it("does not show the model off-topic corpus claims (GLP-1, fasting)", () => {
+    expect(SYSTEM_PROMPT).not.toContain("glp1_semaglutide_14pct");
+    expect(SYSTEM_PROMPT).not.toContain("if_sun_umbrella");
+  });
 });
 
 describe("buildUserMessage", () => {

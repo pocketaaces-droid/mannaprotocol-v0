@@ -6,7 +6,7 @@ export function Hero() {
       className="band-dusk"
       style={{
         backgroundImage:
-          "linear-gradient(165deg, rgba(36,26,16,0.86) 0%, rgba(58,44,27,0.82) 55%, rgba(78,107,94,0.6) 150%), url('/protocol-hero.jpg')",
+          "linear-gradient(165deg, rgba(36,26,16,0.88) 0%, rgba(58,44,27,0.84) 55%, rgba(78,107,94,0.72) 150%), url('/protocol-hero.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

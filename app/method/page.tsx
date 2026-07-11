@@ -50,7 +50,7 @@ export default function MethodPage() {
           </ul>
 
           <h3>What this is not</h3>
-          <p>This is an educational summary of published research on food order and post-meal walking. It is not a prediction of your body&rsquo;s response, not a CGM reading, and not medical advice. The largest effects in these studies were seen in adults with type 2 diabetes or prediabetes. Healthy adults transiently spike above 140 after typical meals — that is normal physiology, not disease. Individual responses vary. Anyone with diabetes, on glucose-affecting medication, or with a condition involving blood sugar should talk to their healthcare provider before changing how they eat or exercise.</p>
+          <p>This is an educational summary of published research on food order and post-meal walking. It is not a prediction of any individual&rsquo;s response, not a CGM reading, and not medical advice. The largest effects in these studies were seen in adults with type 2 diabetes or prediabetes. Healthy adults transiently spike above 140 after typical meals — that is normal physiology, not disease. Individual responses vary. Anyone with diabetes, on glucose-affecting medication, or with a condition involving blood sugar should talk to their healthcare provider before changing how they eat or exercise.</p>
 
           <div style={{ marginTop: "2rem" }}>
             <Link href="/" className="btn-primary btn-gold">Build my day protocol</Link>

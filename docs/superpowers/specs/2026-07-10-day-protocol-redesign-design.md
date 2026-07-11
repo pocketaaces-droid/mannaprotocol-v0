@@ -103,7 +103,7 @@ Each component: one clear purpose, typed props from `@/lib/schema`, understandab
 
 - Form: client-side required-field checks; API failure → visible inline error card (no silent success); 429 → "The coach is busy — try again in a few minutes."
 - Result page: malformed/missing sessionStorage → empty state, never a crash.
-- API: Zod reject → 400 with safe message; scanner/citation-guard failure → regenerate-or-503 per existing v0 behavior.
+- API: Zod reject → 400 with safe message; scanner/citation-guard failure → fail closed with 500 + safe message (matches v0's actual behavior; the client shows a visible retryable error). Coach citations are additionally restricted to the food-order/walking subset (`COACH_ALLOWED_CITATION_IDS`), enforced in both prompt and route guard.
 
 ## 8. Testing & verification
 

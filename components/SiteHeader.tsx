@@ -2,7 +2,10 @@ export function SiteHeader({ onDusk = false }: { onDusk?: boolean }) {
   return (
     <header
       className={onDusk ? "band-dusk" : undefined}
-      style={{ padding: "1.1rem 0" }}
+      // Inside the Hero the parent already paints the dusk photo+gradient;
+      // keep the class (dusk text tokens) but suppress its own background so
+      // the header doesn't repaint a second gradient over the image.
+      style={{ padding: "1.1rem 0", ...(onDusk ? { background: "transparent" } : {}) }}
     >
       <div
         className="wrap"
