@@ -77,6 +77,17 @@ describe("DayProtocolSchema", () => {
     };
     expect(DayProtocolSchema.safeParse(withScripture).success).toBe(true);
   });
+  it("accepts a station with empty evidence (skipped meal / nothing to cite)", () => {
+    const withEmptyEvidence = {
+      ...validProtocol,
+      stations: [
+        { ...validProtocol.stations[0], evidence: [] },
+        validProtocol.stations[1],
+        validProtocol.stations[2],
+      ],
+    };
+    expect(DayProtocolSchema.safeParse(withEmptyEvidence).success).toBe(true);
+  });
   it("accepts a station whose walk is null (Haiku emits null, not absent)", () => {
     const withNullWalk = {
       ...validProtocol,

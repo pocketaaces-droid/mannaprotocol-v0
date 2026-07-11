@@ -27,7 +27,9 @@ export const StationSchema = z.object({
   // the key, so accept null as well as absent (Station renderer treats both
   // as "no walk").
   walk: WalkSchema.nullish(),
-  evidence: z.array(EvidenceSchema).min(1),
+  // Empty is legal: a skipped meal ("just black coffee") or one that already
+  // needs no fix has nothing to cite. EvidenceRow renders nothing for [].
+  evidence: z.array(EvidenceSchema),
   confidence: ConfidenceSchema,
 });
 export type Station = z.infer<typeof StationSchema>;
