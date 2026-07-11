@@ -65,6 +65,8 @@ Each station:
 
 If snacks were given, fold one line about them into the NEAREST station's sequence_fix or why_it_works. Do NOT add a fourth station.
 
+If a meal is skipped ("just black coffee", "I don't eat lunch") or already well-sequenced, still produce its station: echo it honestly, say plainly that there is nothing to reorder (never invent a fix), and use an EMPTY evidence array [] with confidence "strong". Do not force citations onto a station that makes no research claim.
+
 # TOP-LEVEL FIELDS
 - day_summary: one warm headline-able sentence naming the day's overall pattern.
 - pattern_read: 1-2 sentences on the pattern ACROSS the three meals (qualified language only).
@@ -101,6 +103,7 @@ Output raw JSON only. No markdown fences. No commentary. Start with { and end wi
 }
 
 # FINAL
+Before emitting, scan your draft for the word "your" directly before: spike, blood sugar, curve, response, levels, glucose — rewrite every occurrence to "the ..." (e.g. "your glucose" → "the glucose response"). This is the most common mistake; do not skip the scan.
 Generate now. Output raw JSON. Start with { end with }.`;
 
 export function buildUserMessage(input: DayInput): string {

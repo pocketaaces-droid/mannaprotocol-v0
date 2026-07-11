@@ -24,3 +24,34 @@ export function collectCitationIds(protocol: DayProtocol): string[] {
 export function findDisallowedCitationIds(ids: string[]): string[] {
   return ids.filter((id) => !ALLOWED.has(id));
 }
+
+/**
+ * Haiku occasionally slips second-person possessives on medical nouns
+ * ("your glucose") despite the prompt rules — and for some inputs it does so
+ * on every sample, so retrying can't save the request. The banned pattern has
+ * a mechanical, meaning-preserving rewrite to the house style ("the glucose"),
+ * so normalize before scanning; the banned-phrase scanner stays as the
+ * backstop for everything that can't be rewritten safely.
+ */
+const SECOND_PERSON_MEDICAL = /\byour (spike|blood sugar|curve|response|levels|glucose)\b/gi;
+
+export function sanitizeSecondPersonMedical(protocol: DayProtocol): {
+  protocol: DayProtocol;
+  replacements: number;
+} {
+  let replacements = 0;
+  const fix = (v: unknown): unknown => {
+    if (typeof v === "string") {
+      return v.replace(SECOND_PERSON_MEDICAL, (match, noun: string) => {
+        replacements++;
+        return (match.startsWith("Y") ? "The " : "the ") + noun;
+      });
+    }
+    if (Array.isArray(v)) return v.map(fix);
+    if (v && typeof v === "object") {
+      return Object.fromEntries(Object.entries(v).map(([k, val]) => [k, fix(val)]));
+    }
+    return v;
+  };
+  return { protocol: fix(protocol) as DayProtocol, replacements };
+}
