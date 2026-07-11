@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { DayProtocolSchema, type DayProtocol } from "@/lib/schema";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -9,24 +9,39 @@ import { ProtocolTimeline } from "@/components/ProtocolTimeline";
 import { ExpectationsCard } from "@/components/ExpectationsCard";
 import { CaptureBand } from "@/components/CaptureBand";
 
-export default function ProtocolPage() {
-  const [protocol, setProtocol] = useState<DayProtocol | null>(null);
-  const [ready, setReady] = useState(false);
+// The stored protocol never changes while this page is mounted, so there is
+// nothing to subscribe to — useSyncExternalStore is only bridging the
+// server (no sessionStorage) → client hydration boundary without
+// setState-in-effect.
+const emptySubscribe = () => () => {};
 
-  useEffect(() => {
+function useStoredProtocol(): { protocol: DayProtocol | null; hydrated: boolean } {
+  const raw = useSyncExternalStore(
+    emptySubscribe,
+    () => sessionStorage.getItem("manna-coach-output"),
+    () => null
+  );
+  const hydrated = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
+  const protocol = useMemo(() => {
+    if (!raw) return null;
     try {
-      const raw = sessionStorage.getItem("manna-coach-output");
-      if (raw) {
-        const parsed = DayProtocolSchema.safeParse(JSON.parse(raw));
-        if (parsed.success) setProtocol(parsed.data);
-      }
+      const parsed = DayProtocolSchema.safeParse(JSON.parse(raw));
+      return parsed.success ? parsed.data : null;
     } catch {
-      /* fall through to empty state */
+      return null;
     }
-    setReady(true);
-  }, []);
+  }, [raw]);
+  return { protocol, hydrated };
+}
 
-  if (!ready) return null;
+export default function ProtocolPage() {
+  const { protocol, hydrated } = useStoredProtocol();
+
+  if (!hydrated) return null;
 
   if (!protocol) {
     return (
